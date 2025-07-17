@@ -1,4 +1,7 @@
 export function createHome(){
+    const container = document.createElement('div');
+    container.id = "container";    
+    
     const snack = document.createElement('div');
     snack.id = "snack";
 
@@ -11,5 +14,9 @@ export function createHome(){
     smallP.id = "smallP";
     smallP.textContent = "A simple todo list web application bundled using webpack"
 
-    return { snack, smallP };
+    container.appendChild(snack);
+    container.appendChild(smallP);
+
+    
+    return container;
 }
