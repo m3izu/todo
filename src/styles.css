@@ -16,7 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 100vw;
+    width: calc(100vw - 149px);
     justify-content: center;
     padding: 30rem;
 }
@@ -140,4 +140,62 @@ header {
     width: 28rem;
 }
 
+#addContainer {
+    display: flex;
+    flex-direction: row;
+    width: calc(100vw - 149px);
+    justify-content: center;
+    gap: 20rem;
+}
 
+#titleInp, #projectInp, #dueInp, #statusInp, #noteInp, #descInp {
+    background-color: #FD9B9B;
+    border: none;
+    width: 524px;
+    height: 51px;
+    border-radius: 21px;
+}
+
+#titleText, #projectText, #dueText, #statusText, #noteText, #descText {
+    font-weight: 400;
+    font-style: italic;
+    background: linear-gradient(to right, #107CE0 4%, #999999 77%, #999999 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+}
+
+#leftContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
+}
+
+#rightContainer {
+    display: flex;
+    align-items: center;
+}
+
+#titleText {
+    font-size: 36px;
+}
+
+#titleInp {
+    width: 524px;
+    height: 51px;
+}
+
+#noteInp {
+    width: 524px;
+    height: 258px;
+}
+
+#descInp {
+    width: 524px;
+    height: 501px;
+}
+
+#projectInp, #dueInp, #statusInp {
+    width: 211px;
+    height: 38px;
+}

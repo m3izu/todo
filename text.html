@@ -1,0 +1,56 @@
+<style>
+  .dropdown {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+    position: absolute;
+    background: white;
+    z-index: 1000;
+    width: 200px;
+  }
+  .dropdown div {
+    padding: 8px;
+    cursor: pointer;
+  }
+  .dropdown div:hover {
+    background: #eee;
+  }
+</style>
+
+<input type="text" id="customInput" placeholder="Start typing..." autocomplete="off" />
+<div id="customDropdown" class="dropdown"></div>
+
+<script>
+  const input = document.getElementById("customInput");
+  const dropdown = document.getElementById("customDropdown");
+
+  const suggestions = ["Apple", "Banana", "Cherry", "Date", "Mango", "Orange"];
+
+  input.addEventListener("input", () => {
+    const value = input.value.toLowerCase();
+    dropdown.innerHTML = "";
+    if (value) {
+      const filtered = suggestions.filter(item => item.toLowerCase().includes(value));
+      filtered.forEach(item => {
+        const div = document.createElement("div");
+        div.textContent = item;
+        div.addEventListener("click", () => {
+          input.value = item;
+          dropdown.style.display = "none";
+        });
+        dropdown.appendChild(div);
+      });
+      dropdown.style.display = filtered.length ? "block" : "none";
+    } else {
+      dropdown.style.display = "none";
+    }
+  });
+
+  // Hide dropdown if clicking outside
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target) && e.target !== input) {
+      dropdown.style.display = "none";
+    }
+  });
+</script>
