@@ -172,8 +172,10 @@ header {
 }
 
 #rightContainer {
+    margin-top: 8rem;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 #titleText {
@@ -198,4 +200,31 @@ header {
 #projectInp, #dueInp, #statusInp {
     width: 211px;
     height: 38px;
+}
+
+#submit {
+    margin-top: 4rem;
+    background-color: red;
+    width: 20rem;
+    height: 5rem;
+    border: none;
+    border-radius: 32px;
+    font-weight: bolder;
+    font-style: oblique;
+    color: #999999;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.taskCont {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+    border-radius: 15px;
+    padding: 4rem;
+}
+
+#listcont {
+    display: flex;
+    width: calc(100vw - 149px);
 }

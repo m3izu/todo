@@ -1,6 +1,18 @@
 const projectSelection = ["Personal", "Work", "Education", "Others"];
 const statusSelection = ["Low", "Medium", "High"];
 
+class Tasks {
+    constructor(title, project, due, status, note, desc) {
+        this.title = title;
+        this.project = project;
+        this.due = due;
+        this.status = status;
+        this.note = note;
+        this.desc = desc;
+        this.id = title + Math.floor(Math.random() * 100);
+    }
+}
+
 export function createAdd() {
     console.log("add button working")
 
@@ -115,8 +127,42 @@ export function createAdd() {
     descDiv.appendChild(descInp);
     rightContainer.appendChild(descDiv);
 
+    const submit = document.createElement("button");
+    submit.id = "submit";
+    submit.type = "button";
+    submit.innerHTML = "Submit!";
+
+    rightContainer.appendChild(submit);
+
+    submit.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const title = titleInp.value.trim();
+    const project = projectInp.value.trim();
+    const due = dueInp.value.trim();
+    const status = statusInp.value.trim();
+    const note = noteInp.value.trim();
+    const desc = descInp.value.trim();
+
+    if (title && project && due && status && note && desc) {
+        const newTask = new Tasks(title, project, due, status, note, desc);
+        
+        let stored = localStorage.getItem('tasks');
+        let taskArray = stored ? JSON.parse(stored) : [];
+
+        taskArray.push(newTask);
+        localStorage.setItem('tasks', JSON.stringify(taskArray));
+
+        console.log("Task Saved:", newTask)
+    } else {
+        alert("Fill out all the details ples.")
+    }
+    })
+
+
     addContainer.appendChild(leftContainer);
     addContainer.appendChild(rightContainer);
     
+
     return addContainer;
 };
