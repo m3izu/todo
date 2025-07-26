@@ -218,13 +218,31 @@ header {
 
 .taskCont {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: 2rem;
     border-radius: 15px;
     padding: 4rem;
+    gap: 1rem;
 }
 
 #listcont {
     display: flex;
     width: calc(100vw - 149px);
+    gap: 2rem;
+}
+
+.lcont {
+    display: flex;
+    flex-direction: row;
+    gap: 10rem;
+}
+
+.ncont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+}
+
+#deletesvg, #editsvg {
+    cursor:pointer;
 }

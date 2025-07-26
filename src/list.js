@@ -61,10 +61,12 @@ export function createList() {
         const edit = document.createElement("img");
         edit.src = editt;
         edit.id = "editsvg";
+        edit.addEventListener("click", () => editTask(task.id));
 
         const delet = document.createElement("img");
         delet.src = deletee;
         delet.id = "deletesvg";
+        delet.addEventListener("click", () => deleteList(task.id));
 
         inNcont.appendChild(edit);
         inNcont.appendChild(delet);
@@ -82,3 +84,43 @@ export function createList() {
 
     return listContainer;
 };
+
+function deleteList(id) {
+    let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    tasks = tasks.filter(task => task.id !== id);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    const taskElement = document.getElementById(id);
+    if (taskElement) {
+        taskElement.remove();
+    }
+}
+
+function editTask(id) {
+    const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    const taskIndex = tasks.findIndex(task => task.id === id);
+    if (taskIndex === -1) return;
+
+    const task = tasks[taskIndex];
+
+    const newTitle = prompt("Edit Title:", task.title);
+    const newDesc = prompt("Edit Description:", task.desc);
+    const newNote = prompt("Edit Note:", task.note);
+
+    if (newTitle === null || newDesc === null || newNote === null) return;
+
+    tasks[taskIndex] = {
+        ...task,
+        title: newTitle,
+        desc: newDesc,
+        note: newNote
+    };
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    const listRoot = document.getElementById("listRoot");
+    if (listRoot) {
+        listRoot.innerHTML = "";
+        listRoot.appendChild(createList());
+    }
+}
